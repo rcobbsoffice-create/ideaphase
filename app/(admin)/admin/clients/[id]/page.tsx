@@ -11,7 +11,7 @@ import { DeleteClientButton } from '@/components/admin/DeleteClientButton'
 
 const statusColors: Record<string, string> = {
   active: 'bg-primary/10 text-primary border-primary/20',
-  in_progress: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+  in_progress: 'bg-primary/10 text-primary border-primary/20',
   completed: 'bg-secondary text-muted-foreground border-border',
   on_hold: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
 }

@@ -56,20 +56,20 @@
   --card-foreground: #F0F0FF;
   --popover: #0D0D16;
   --popover-foreground: #F0F0FF;
-  --primary: #3B82F6;
+  --primary: #00C9A7;
   --primary-foreground: #ffffff;
   --secondary: #1A1A28;
   --secondary-foreground: #A0A0C0;
   --muted: #1A1A28;
   --muted-foreground: #6B6B85;
-  --accent: #1E2A4A;
-  --accent-foreground: #3B82F6;
+  --accent: #0D2420;
+  --accent-foreground: #00C9A7;
   --destructive: #EF4444;
   --destructive-foreground: #ffffff;
   --border: #1E1E2E;
   --input: #1A1A28;
-  --ring: #3B82F6;
-  --chart-1: #3B82F6;
+  --ring: #00C9A7;
+  --chart-1: #00C9A7;
   --chart-2: #60A5FA;
   --chart-3: #93C5FD;
   --chart-4: #10B981;
@@ -77,12 +77,12 @@
   --radius: 0.75rem;
   --sidebar: #07070D;
   --sidebar-foreground: #F0F0FF;
-  --sidebar-primary: #3B82F6;
+  --sidebar-primary: #00C9A7;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #1A1A28;
   --sidebar-accent-foreground: #A0A0C0;
   --sidebar-border: #161622;
-  --sidebar-ring: #3B82F6;
+  --sidebar-ring: #00C9A7;
 }
 
 /* Dark mode inherits :root since IdeaPhase is always dark */

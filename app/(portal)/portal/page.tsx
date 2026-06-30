@@ -75,7 +75,7 @@ export default async function PortalPage() {
                   <p className="font-semibold text-foreground">{proj.name}</p>
                   <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${
                     proj.status === 'completed' ? 'bg-primary/10 text-primary' :
-                    proj.status === 'in_progress' ? 'bg-blue-500/10 text-blue-400' :
+                    proj.status === 'in_progress' ? 'bg-primary/10 text-primary' :
                     proj.status === 'on_hold' ? 'bg-amber-500/10 text-amber-400' :
                     'bg-secondary text-muted-foreground'
                   }`}>
