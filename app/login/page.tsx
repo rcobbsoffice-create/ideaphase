@@ -45,8 +45,11 @@ export default function LoginPage() {
       <div className="relative w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <NextImage src="/logo.png" alt="IdeaPhase Development Group" width={220} height={66} className="object-contain" priority />
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <NextImage src="/favicon-icon.png" alt="IdeaPhase" width={48} height={48} className="object-contain" priority />
+            <span className="text-3xl font-bold tracking-widest">
+              <span className="text-white">IDEA</span><span style={{ color: '#00C9A7' }}>PHASE</span>
+            </span>
           </div>
           <p className="text-muted-foreground text-sm">Sign in to your workspace</p>
         </div>

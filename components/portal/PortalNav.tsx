@@ -28,12 +28,12 @@ export function PortalNav() {
   return (
     <header className="fixed top-0 inset-x-0 h-14 bg-sidebar border-b border-sidebar-border z-40 flex items-center px-6">
       {/* Logo */}
-      <div className="flex items-center gap-3 mr-10">
-        <NextImage src="/favicon-icon.png" alt="IdeaPhase" width={32} height={32} className="object-contain" />
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-sm tracking-tight text-foreground">IdeaPhase</span>
-          <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">Client Portal</span>
-        </div>
+      <div className="flex items-center gap-2.5 mr-10">
+        <NextImage src="/favicon-icon.png" alt="IdeaPhase" width={28} height={28} className="object-contain shrink-0" />
+        <span className="text-sm font-bold tracking-widest">
+          <span className="text-white">IDEA</span><span style={{ color: '#00C9A7' }}>PHASE</span>
+        </span>
+        <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">Client Portal</span>
       </div>
 
       {/* Nav */}
