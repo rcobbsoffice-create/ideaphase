@@ -111,7 +111,7 @@ export function UploadMockupForm({ clients }: { clients: { id: string; full_name
               onClick={copyLink}
               className="shrink-0 text-primary hover:text-primary/80 transition-colors cursor-pointer"
             >
-              {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+              {copied ? <CheckCircle2 className="w-4 h-4 text-primary" /> : <Copy className="w-4 h-4" />}
             </button>
           </div>
         </div>

@@ -74,7 +74,7 @@ export default async function PortalPage() {
                 <div className="flex items-center justify-between mb-3">
                   <p className="font-semibold text-foreground">{proj.name}</p>
                   <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${
-                    proj.status === 'completed' ? 'bg-emerald-500/10 text-emerald-400' :
+                    proj.status === 'completed' ? 'bg-primary/10 text-primary' :
                     proj.status === 'in_progress' ? 'bg-blue-500/10 text-blue-400' :
                     proj.status === 'on_hold' ? 'bg-amber-500/10 text-amber-400' :
                     'bg-secondary text-muted-foreground'
@@ -119,8 +119,8 @@ export default async function PortalPage() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 bg-emerald-500/10 rounded-xl flex items-center justify-center">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div className="w-9 h-9 bg-primary/10 rounded-xl flex items-center justify-center">
+                <CheckCircle2 className="w-4 h-4 text-primary" />
               </div>
               <div>
                 <p className="text-lg font-bold text-foreground">

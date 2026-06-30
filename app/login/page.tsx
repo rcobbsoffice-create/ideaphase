@@ -48,7 +48,7 @@ export default function LoginPage() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <NextImage src="/favicon-icon.png" alt="IdeaPhase" width={48} height={48} className="object-contain" priority />
             <span className="text-3xl font-bold tracking-widest">
-              <span className="text-white">IDEA</span><span style={{ color: '#00C9A7' }}>PHASE</span>
+              <span className="text-white">IDEA</span><span className="text-white">PHASE</span>
             </span>
           </div>
           <p className="text-muted-foreground text-sm">Sign in to your workspace</p>

@@ -5,7 +5,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { InvoiceStatusUpdate } from '@/components/admin/InvoiceStatusUpdate'
 
 const statusColor: Record<string, string> = {
-  paid: 'bg-emerald-500/10 text-emerald-400',
+  paid: 'bg-primary/10 text-primary',
   unpaid: 'bg-amber-500/10 text-amber-400',
   overdue: 'bg-red-500/10 text-red-400',
   cancelled: 'bg-secondary text-muted-foreground',
@@ -37,10 +37,10 @@ export default async function InvoicesPage() {
       <div className="grid grid-cols-2 gap-4 mb-8 max-w-md">
         <div className="bg-card border border-border rounded-xl p-4">
           <div className="flex items-center gap-2 mb-1">
-            <DollarSign className="w-4 h-4 text-emerald-400" />
+            <DollarSign className="w-4 h-4 text-primary" />
             <p className="text-xs text-muted-foreground">Collected</p>
           </div>
-          <p className="text-xl font-bold text-emerald-400">${(totalPaid / 100).toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+          <p className="text-xl font-bold text-primary">${(totalPaid / 100).toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
         </div>
         <div className="bg-card border border-border rounded-xl p-4">
           <div className="flex items-center gap-2 mb-1">

@@ -41,7 +41,7 @@ export default async function DashboardPage() {
   const pendingRevenue = (invoices ?? []).filter(i => i.status === 'unpaid').reduce((s, i) => s + i.amount, 0)
 
   const statusColor: Record<string, string> = {
-    paid: 'bg-emerald-500/10 text-emerald-400',
+    paid: 'bg-primary/10 text-primary',
     unpaid: 'bg-amber-500/10 text-amber-400',
     overdue: 'bg-red-500/10 text-red-400',
     cancelled: 'bg-secondary text-muted-foreground',

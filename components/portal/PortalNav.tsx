@@ -31,7 +31,7 @@ export function PortalNav() {
       <div className="flex items-center gap-2.5 mr-10">
         <NextImage src="/favicon-icon.png" alt="IdeaPhase" width={28} height={28} className="object-contain shrink-0" />
         <span className="text-sm font-bold tracking-widest">
-          <span className="text-white">IDEA</span><span style={{ color: '#00C9A7' }}>PHASE</span>
+          <span className="text-white">IDEA</span><span className="text-white">PHASE</span>
         </span>
         <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">Client Portal</span>
       </div>

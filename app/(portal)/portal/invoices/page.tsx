@@ -31,7 +31,7 @@ export default async function PortalInvoicesPage() {
       <div className="grid grid-cols-2 gap-4 mb-8 max-w-sm">
         <div className="bg-card border border-border rounded-xl p-4">
           <p className="text-xs text-muted-foreground mb-1">Total Paid</p>
-          <p className="text-xl font-bold text-emerald-400">${(totalPaid / 100).toFixed(2)}</p>
+          <p className="text-xl font-bold text-primary">${(totalPaid / 100).toFixed(2)}</p>
         </div>
         <div className="bg-card border border-border rounded-xl p-4">
           <p className="text-xs text-muted-foreground mb-1">Amount Due</p>
@@ -49,10 +49,10 @@ export default async function PortalInvoicesPage() {
           (invoices ?? []).map((inv: any) => (
             <div key={inv.id} className="bg-card border border-border rounded-2xl p-5 flex items-center gap-4">
               <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                inv.status === 'paid' ? 'bg-emerald-500/10' :
+                inv.status === 'paid' ? 'bg-primary/10' :
                 inv.status === 'unpaid' ? 'bg-amber-500/10' : 'bg-red-500/10'
               }`}>
-                {inv.status === 'paid' ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> :
+                {inv.status === 'paid' ? <CheckCircle2 className="w-4 h-4 text-primary" /> :
                  inv.status === 'unpaid' ? <Clock className="w-4 h-4 text-amber-400" /> :
                  <AlertCircle className="w-4 h-4 text-red-400" />}
               </div>
@@ -65,7 +65,7 @@ export default async function PortalInvoicesPage() {
                     <p className="text-xs text-muted-foreground">Due: {new Date(inv.due_date).toLocaleDateString()}</p>
                   )}
                   {inv.paid_at && (
-                    <p className="text-xs text-emerald-400">Paid {new Date(inv.paid_at).toLocaleDateString()}</p>
+                    <p className="text-xs text-primary">Paid {new Date(inv.paid_at).toLocaleDateString()}</p>
                   )}
                 </div>
               </div>
@@ -76,7 +76,7 @@ export default async function PortalInvoicesPage() {
                   <PayInvoiceButton invoiceId={inv.id} amount={inv.amount} title={inv.title} />
                 )}
                 {inv.status === 'paid' && (
-                  <span className="text-xs text-emerald-400 font-medium">Paid ✓</span>
+                  <span className="text-xs text-primary font-medium">Paid ✓</span>
                 )}
               </div>
             </div>

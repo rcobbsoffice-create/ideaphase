@@ -34,7 +34,7 @@ export function AdminSidebar() {
       <div className="flex items-center gap-2.5 px-4 h-16 border-b border-sidebar-border">
         <NextImage src="/favicon-icon.png" alt="IdeaPhase" width={36} height={36} className="object-contain shrink-0" priority />
         <span className="text-lg font-bold tracking-widest">
-          <span className="text-white">IDEA</span><span style={{ color: '#00C9A7' }}>PHASE</span>
+          <span className="text-white">IDEA</span><span className="text-white">PHASE</span>
         </span>
       </div>
 

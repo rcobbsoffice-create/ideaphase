@@ -10,7 +10,7 @@ import { EditClientDialog } from '@/components/admin/EditClientDialog'
 import { DeleteClientButton } from '@/components/admin/DeleteClientButton'
 
 const statusColors: Record<string, string> = {
-  active: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+  active: 'bg-primary/10 text-primary border-primary/20',
   in_progress: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
   completed: 'bg-secondary text-muted-foreground border-border',
   on_hold: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
@@ -61,7 +61,7 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
         <div className="flex items-center gap-4">
           <div className="text-right">
             <p className="text-xs text-muted-foreground">Collected</p>
-            <p className="text-lg font-bold text-emerald-400">${(totalPaid / 100).toFixed(2)}</p>
+            <p className="text-lg font-bold text-primary">${(totalPaid / 100).toFixed(2)}</p>
           </div>
           <div className="text-right">
             <p className="text-xs text-muted-foreground">Pending</p>
@@ -142,7 +142,7 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
                       <p className="text-xs text-muted-foreground">${(inv.amount / 100).toFixed(2)}</p>
                     </div>
                     <span className={`text-xs px-2 py-0.5 rounded-full font-medium shrink-0 ${
-                      inv.status === 'paid' ? 'bg-emerald-500/10 text-emerald-400' :
+                      inv.status === 'paid' ? 'bg-primary/10 text-primary' :
                       inv.status === 'unpaid' ? 'bg-amber-500/10 text-amber-400' :
                       'bg-red-500/10 text-red-400'
                     }`}>
