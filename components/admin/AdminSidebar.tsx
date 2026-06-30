@@ -29,51 +29,53 @@ export function AdminSidebar() {
   }
 
   return (
-    <aside className="fixed inset-y-0 left-0 w-60 bg-sidebar border-r border-sidebar-border flex flex-col z-40">
+    <aside className="fixed inset-y-0 left-0 w-14 lg:w-60 bg-sidebar border-r border-sidebar-border flex flex-col z-40 transition-all duration-200">
       {/* Logo */}
-      <div className="flex items-center gap-2.5 px-4 h-16 border-b border-sidebar-border">
-        <NextImage src="/favicon-icon.png" alt="IdeaPhase" width={36} height={36} className="object-contain shrink-0" priority />
-        <span className="text-lg font-bold tracking-widest">
+      <div className="flex items-center justify-center lg:justify-start gap-2.5 lg:px-4 h-16 border-b border-sidebar-border">
+        <NextImage src="/favicon-icon.png" alt="IdeaPhase" width={32} height={32} className="object-contain shrink-0" priority />
+        <span className="hidden lg:block text-lg font-bold tracking-widest">
           <span className="text-white">IDEA</span><span className="text-white">PHASE</span>
         </span>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest px-3 py-2">Menu</p>
+      <nav className="flex-1 p-2 lg:p-3 space-y-1 overflow-y-auto">
+        <p className="hidden lg:block text-xs font-semibold text-muted-foreground uppercase tracking-widest px-3 py-2">Menu</p>
         {nav.map(({ href, label, icon: Icon }) => {
           const active = pathname === href || pathname.startsWith(href + '/')
           return (
             <Link
               key={href}
               href={href}
+              title={label}
               className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 cursor-pointer group',
+                'flex items-center gap-3 px-0 lg:px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 cursor-pointer group justify-center lg:justify-start',
                 active
                   ? 'bg-primary/10 text-primary'
                   : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
               )}
             >
-              <Icon className={cn('w-4 h-4 shrink-0', active ? 'text-primary' : 'group-hover:text-foreground')} />
-              <span className="flex-1">{label}</span>
-              {active && <ChevronRight className="w-3.5 h-3.5 text-primary" />}
+              <Icon className={cn('w-5 h-5 shrink-0', active ? 'text-primary' : 'group-hover:text-foreground')} />
+              <span className="hidden lg:block flex-1">{label}</span>
+              {active && <ChevronRight className="hidden lg:block w-3.5 h-3.5 text-primary" />}
             </Link>
           )
         })}
       </nav>
 
       {/* Footer */}
-      <div className="p-3 border-t border-sidebar-border">
-        <div className="px-3 py-2 mb-1">
+      <div className="p-2 lg:p-3 border-t border-sidebar-border">
+        <div className="hidden lg:block px-3 py-2 mb-1">
           <p className="text-xs font-medium text-foreground truncate">IdeaPhase Admin</p>
           <p className="text-xs text-muted-foreground truncate">agstudios757@gmail.com</p>
         </div>
         <button
           onClick={signOut}
-          className="flex items-center gap-3 px-3 py-2.5 w-full rounded-xl text-sm font-medium text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-all duration-150 cursor-pointer"
+          title="Sign Out"
+          className="flex items-center gap-3 px-0 lg:px-3 py-2.5 w-full rounded-xl text-sm font-medium text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-all duration-150 cursor-pointer justify-center lg:justify-start"
         >
-          <LogOut className="w-4 h-4" />
-          Sign Out
+          <LogOut className="w-5 h-5 shrink-0" />
+          <span className="hidden lg:block">Sign Out</span>
         </button>
       </div>
     </aside>

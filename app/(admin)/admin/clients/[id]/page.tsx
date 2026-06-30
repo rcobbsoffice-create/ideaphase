@@ -38,27 +38,27 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
   const totalPending = (invoices ?? []).filter(i => i.status === 'unpaid').reduce((s, i) => s + i.amount, 0)
 
   return (
-    <div className="p-8">
+    <div className="p-4 lg:p-8">
       {/* Header */}
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
         <div className="flex items-start gap-4">
-          <Link href="/admin/clients" className="mt-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+          <Link href="/admin/clients" className="mt-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer shrink-0">
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-lg">
+              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-lg shrink-0">
                 {client.full_name.charAt(0).toUpperCase()}
               </div>
-              <h1 className="text-2xl font-bold text-foreground">{client.full_name}</h1>
+              <h1 className="text-xl lg:text-2xl font-bold text-foreground">{client.full_name}</h1>
             </div>
-            <div className="flex items-center gap-3 mt-1 ml-13">
+            <div className="flex flex-wrap items-center gap-2 mt-1 ml-13">
               <p className="text-muted-foreground text-sm">{client.email}</p>
               {client.company && <span className="text-muted-foreground text-sm">· {client.company}</span>}
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 ml-14 sm:ml-0">
           <div className="text-right">
             <p className="text-xs text-muted-foreground">Collected</p>
             <p className="text-lg font-bold text-primary">${(totalPaid / 100).toFixed(2)}</p>

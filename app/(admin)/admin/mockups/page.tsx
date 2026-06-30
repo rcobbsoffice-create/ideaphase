@@ -12,7 +12,7 @@ export default async function MockupsPage() {
   ])
 
   return (
-    <div className="p-8">
+    <div className="p-4 lg:p-8">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-foreground">Mockups</h1>
         <p className="text-muted-foreground text-sm mt-1">Upload HTML files and share preview links with clients</p>
