@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { AddProjectDialog } from '@/components/admin/AddProjectDialog'
 import { AddUpdateDialog } from '@/components/admin/AddUpdateDialog'
+import { EditClientDialog } from '@/components/admin/EditClientDialog'
+import { DeleteClientButton } from '@/components/admin/DeleteClientButton'
 
 const statusColors: Record<string, string> = {
   active: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
@@ -56,7 +58,7 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <div className="text-right">
             <p className="text-xs text-muted-foreground">Collected</p>
             <p className="text-lg font-bold text-emerald-400">${(totalPaid / 100).toFixed(2)}</p>
@@ -64,6 +66,10 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
           <div className="text-right">
             <p className="text-xs text-muted-foreground">Pending</p>
             <p className="text-lg font-bold text-amber-400">${(totalPending / 100).toFixed(2)}</p>
+          </div>
+          <div className="flex items-center gap-2 pl-2 border-l border-border">
+            <EditClientDialog client={client} />
+            <DeleteClientButton clientId={client.id} clientName={client.full_name} />
           </div>
         </div>
       </div>
