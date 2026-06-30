@@ -5,8 +5,9 @@ import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
+import NextImage from 'next/image'
 import {
-  LayoutDashboard, Users, FileText, Image, LogOut, Zap, ChevronRight
+  LayoutDashboard, Users, FileText, Image, LogOut, ChevronRight
 } from 'lucide-react'
 
 const nav = [
@@ -30,11 +31,8 @@ export function AdminSidebar() {
   return (
     <aside className="fixed inset-y-0 left-0 w-60 bg-sidebar border-r border-sidebar-border flex flex-col z-40">
       {/* Logo */}
-      <div className="flex items-center gap-2.5 px-5 h-16 border-b border-sidebar-border">
-        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
-          <Zap className="w-4 h-4 text-white" fill="white" />
-        </div>
-        <span className="font-bold text-lg tracking-tight text-foreground">IdeaPhase</span>
+      <div className="flex items-center px-4 h-16 border-b border-sidebar-border">
+        <NextImage src="/logo.png" alt="IdeaPhase Development Group" width={160} height={48} className="object-contain" priority />
       </div>
 
       {/* Nav */}

@@ -11,7 +11,11 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: 'IdeaPhase',
-  description: 'Client management portal by IdeaPhase',
+  description: 'Client management portal by IdeaPhase Development Group',
+  icons: {
+    icon: '/favicon-icon.png',
+    apple: '/apple-icon.png',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

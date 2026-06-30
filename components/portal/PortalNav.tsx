@@ -5,7 +5,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
-import { LayoutDashboard, FileText, Image, LogOut, Zap } from 'lucide-react'
+import { LayoutDashboard, FileText, Image, LogOut } from 'lucide-react'
+import NextImage from 'next/image'
 
 const nav = [
   { href: '/portal', label: 'Overview', icon: LayoutDashboard, exact: true },
@@ -27,12 +28,12 @@ export function PortalNav() {
   return (
     <header className="fixed top-0 inset-x-0 h-14 bg-sidebar border-b border-sidebar-border z-40 flex items-center px-6">
       {/* Logo */}
-      <div className="flex items-center gap-2 mr-10">
-        <div className="w-7 h-7 bg-primary rounded-lg flex items-center justify-center">
-          <Zap className="w-3.5 h-3.5 text-white" fill="white" />
+      <div className="flex items-center gap-3 mr-10">
+        <NextImage src="/favicon-icon.png" alt="IdeaPhase" width={32} height={32} className="object-contain" />
+        <div className="flex items-center gap-2">
+          <span className="font-bold text-sm tracking-tight text-foreground">IdeaPhase</span>
+          <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">Client Portal</span>
         </div>
-        <span className="font-bold text-sm tracking-tight text-foreground">IdeaPhase</span>
-        <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full ml-1">Client Portal</span>
       </div>
 
       {/* Nav */}
