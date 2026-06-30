@@ -20,7 +20,7 @@ export async function createClientAction(formData: FormData) {
   // Invite user via Supabase Auth
   const { data: invited, error: inviteError } = await admin.auth.admin.inviteUserByEmail(email, {
     data: { role: 'client', full_name },
-    redirectTo: `${appUrl}/portal`,
+    redirectTo: `${appUrl}/auth/callback?next=/portal`,
   })
 
   if (inviteError) return { error: inviteError.message }

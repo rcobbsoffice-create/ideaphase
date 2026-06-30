@@ -25,7 +25,7 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Public routes
-  if (pathname.startsWith('/view/') || pathname === '/login' || pathname.startsWith('/api/stripe/webhook')) {
+  if (pathname.startsWith('/view/') || pathname === '/login' || pathname.startsWith('/auth/callback') || pathname.startsWith('/api/stripe/webhook')) {
     return supabaseResponse
   }
 
