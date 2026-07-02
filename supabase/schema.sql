@@ -69,6 +69,7 @@ create table if not exists public.mockups (
   name text not null,
   file_path text not null,
   share_token text unique not null,
+  is_private boolean not null default false,
   created_at timestamptz default now() not null
 );
 
@@ -161,9 +162,23 @@ create policy "Admins upload mockups" on storage.objects
     bucket_id = 'mockups' and public.is_admin()
   );
 
-create policy "Authenticated users download mockups" on storage.objects
+drop policy if exists "Authenticated users download mockups" on storage.objects;
+create policy "Download public or owned mockups" on storage.objects
   for select using (
-    bucket_id = 'mockups' and auth.role() = 'authenticated'
+    bucket_id = 'mockups' and (
+      public.is_admin()
+      or exists (
+        select 1 from public.mockups m
+        where m.file_path = storage.objects.name and not m.is_private
+      )
+      or exists (
+        select 1 from public.mockups m
+        join public.clients c on c.id = m.client_id
+        where m.file_path = storage.objects.name
+          and m.is_private
+          and c.profile_id = auth.uid()
+      )
+    )
   );
 
 create policy "Admins delete mockups" on storage.objects

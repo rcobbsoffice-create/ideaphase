@@ -165,6 +165,7 @@ export interface Database {
           name: string
           file_path: string
           share_token: string
+          is_private: boolean
           created_at: string
         }
         Insert: {
@@ -174,6 +175,7 @@ export interface Database {
           name: string
           file_path: string
           share_token: string
+          is_private?: boolean
           created_at?: string
         }
         Update: {
@@ -183,6 +185,7 @@ export interface Database {
           name?: string
           file_path?: string
           share_token?: string
+          is_private?: boolean
           created_at?: string
         }
       }

@@ -11,6 +11,7 @@ export async function uploadMockupAction(formData: FormData) {
   const clientId = formData.get('client_id') as string
   const projectId = (formData.get('project_id') as string) || null
   const name = formData.get('name') as string
+  const isPrivate = formData.get('is_private') === 'on'
 
   if (!file || file.size === 0) return { error: 'No file provided' }
   if (!file.name.endsWith('.html') && !file.name.endsWith('.htm')) {
@@ -33,6 +34,7 @@ export async function uploadMockupAction(formData: FormData) {
     name,
     file_path: filePath,
     share_token: shareToken,
+    is_private: isPrivate,
   })
 
   if (dbError) {
@@ -48,6 +50,18 @@ export async function deleteMockupAction(id: string, filePath: string) {
   const supabase = await createClient()
   await supabase.storage.from('mockups').remove([filePath])
   const { error } = await supabase.from('mockups').delete().eq('id', id)
+  if (error) return { error: error.message }
+  revalidatePath('/admin/mockups')
+  return { success: true }
+}
+
+export async function toggleMockupPrivacyAction(id: string, isPrivate: boolean) {
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('mockups')
+    .update({ is_private: isPrivate })
+    .eq('id', id)
+
   if (error) return { error: error.message }
   revalidatePath('/admin/mockups')
   return { success: true }

@@ -96,6 +96,18 @@ export function UploadMockupForm({ clients }: { clients: { id: string; full_name
           </div>
         </div>
 
+        <div className="flex items-center gap-2 pt-1 pb-2">
+          <input
+            id="is_private"
+            name="is_private"
+            type="checkbox"
+            className="w-4 h-4 rounded border-border bg-input text-primary focus:ring-primary cursor-pointer accent-primary"
+          />
+          <Label htmlFor="is_private" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+            Make Private (requires client login)
+          </Label>
+        </div>
+
         <Button type="submit" disabled={loading} className="w-full bg-primary hover:bg-primary/90 text-white cursor-pointer">
           {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
           {loading ? 'Uploading...' : 'Upload & Get Link'}

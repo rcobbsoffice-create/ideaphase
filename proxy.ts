@@ -25,7 +25,71 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Public routes
-  if (pathname.startsWith('/view/') || pathname === '/login' || pathname.startsWith('/auth/callback') || pathname.startsWith('/api/stripe/webhook')) {
+  if (
+    pathname === '/login' ||
+    pathname.startsWith('/auth/callback') ||
+    pathname.startsWith('/api/stripe/webhook')
+  ) {
+    return supabaseResponse
+  }
+
+  // Handle mockup routes dynamically based on privacy settings
+  const isMockupView = pathname.startsWith('/view/')
+  const isMockupApi = pathname.startsWith('/api/mockups/') && !pathname.endsWith('/upload')
+
+  if (isMockupView || isMockupApi) {
+    const segments = pathname.split('/')
+    const token = segments[segments.length - 1]
+
+    if (token) {
+      const { data: mockup } = await supabase
+        .from('mockups')
+        .select('is_private, client_id')
+        .eq('share_token', token)
+        .single()
+
+      if (mockup && !mockup.is_private) {
+        return supabaseResponse
+      }
+
+      if (mockup && mockup.is_private) {
+        if (!user) {
+          return NextResponse.redirect(
+            new URL(`/login?next=${encodeURIComponent(pathname)}`, request.url)
+          )
+        }
+
+        // Check user role
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', user.id)
+          .single()
+
+        const role = profile?.role
+
+        if (role === 'admin') {
+          return supabaseResponse
+        }
+
+        if (role === 'client') {
+          const { data: client } = await supabase
+            .from('clients')
+            .select('profile_id')
+            .eq('id', mockup.client_id)
+            .single()
+
+          if (client && client.profile_id === user.id) {
+            return supabaseResponse
+          }
+        }
+
+        // Authenticated but unauthorized for this specific private mockup
+        const dest = role === 'admin' ? '/admin/dashboard' : '/portal'
+        return NextResponse.redirect(new URL(dest, request.url))
+      }
+    }
+
     return supabaseResponse
   }
 

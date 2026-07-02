@@ -32,7 +32,9 @@ export default function LoginPage() {
       .eq('id', data.user.id)
       .single()
 
-    router.push(profile?.role === 'admin' ? '/admin/dashboard' : '/portal')
+    const searchParams = new URLSearchParams(window.location.search)
+    const next = searchParams.get('next')
+    router.push(next || (profile?.role === 'admin' ? '/admin/dashboard' : '/portal'))
   }
 
   return (
