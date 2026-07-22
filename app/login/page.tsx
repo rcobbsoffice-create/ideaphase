@@ -21,21 +21,26 @@ export default function LoginPage() {
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) {
-      toast.error(error.message)
-      setLoading(false)
-      return
-    }
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', data.user.id)
-      .single()
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+      if (error) {
+        toast.error(error.message)
+        setLoading(false)
+        return
+      }
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', data.user.id)
+        .single()
 
-    const searchParams = new URLSearchParams(window.location.search)
-    const next = searchParams.get('next')
-    router.push(next || (profile?.role === 'admin' ? '/admin/dashboard' : '/portal'))
+      const searchParams = new URLSearchParams(window.location.search)
+      const next = searchParams.get('next')
+      router.push(next || (profile?.role === 'admin' ? '/admin/dashboard' : '/portal'))
+    } catch (err: any) {
+      toast.error(err?.message || 'Unable to connect to database. Please check your network or Supabase URL.')
+      setLoading(false)
+    }
   }
 
   return (
