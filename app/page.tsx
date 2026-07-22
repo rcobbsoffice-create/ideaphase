@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -410,10 +411,13 @@ export default function HomePage() {
           {/* Logo */}
           <button onClick={() => scrollTo("hero")} className="flex items-center gap-2.5" id="nav-logo"
             onMouseEnter={() => setCursorExpanded(true)} onMouseLeave={() => setCursorExpanded(false)}>
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black transition-transform duration-200 hover:scale-110"
-              style={{ background: "linear-gradient(135deg, #00C9A7, #3B82F6)" }}>
-              IP
-            </div>
+            <Image
+              src="/favicon-icon.png"
+              alt="IdeaPhase"
+              width={32}
+              height={32}
+              className="w-8 h-8 rounded-lg object-contain transition-transform duration-200 hover:scale-110"
+            />
             <span className="font-bold text-lg tracking-tight">Idea<span style={{ color: "#00C9A7" }}>Phase</span></span>
           </button>
 
@@ -852,10 +856,13 @@ export default function HomePage() {
       <footer className="border-t border-[#1E1E2E] py-12 px-6 bg-[#07070D]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <button onClick={() => scrollTo("hero")} className="flex items-center gap-2.5" id="footer-logo">
-            <div className="w-7 h-7 rounded-md flex items-center justify-center text-xs font-black"
-              style={{ background: "linear-gradient(135deg, #00C9A7, #3B82F6)" }}>
-              IP
-            </div>
+            <Image
+              src="/favicon-icon.png"
+              alt="IdeaPhase"
+              width={28}
+              height={28}
+              className="w-7 h-7 rounded-md object-contain"
+            />
             <span className="font-bold text-sm tracking-tight">Idea<span style={{ color: "#00C9A7" }}>Phase</span></span>
           </button>
 
