@@ -26,6 +26,7 @@ export async function proxy(request: NextRequest) {
 
   // Public routes
   if (
+    pathname === '/' ||
     pathname === '/login' ||
     pathname.startsWith('/auth/callback') ||
     pathname.startsWith('/api/stripe/webhook')
