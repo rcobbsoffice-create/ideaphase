@@ -11,31 +11,40 @@ import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 import NextImage from 'next/image'
 
-export default function LoginPage() {
-  const [email, setEmail] = useState('')
+export default function ResetPasswordPage() {
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const supabase = createClient()
 
-  async function handleLogin(e: React.FormEvent) {
+  async function handlePasswordUpdate(e: React.FormEvent) {
     e.preventDefault()
-    setLoading(true)
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) {
-      toast.error(error.message)
-      setLoading(false)
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters')
       return
     }
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', data.user.id)
-      .single()
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match')
+      return
+    }
+    setLoading(true)
 
-    const searchParams = new URLSearchParams(window.location.search)
-    const next = searchParams.get('next')
-    router.push(next || (profile?.role === 'admin' ? '/admin/dashboard' : '/portal'))
+    try {
+      const { error } = await supabase.auth.updateUser({ password })
+
+      if (error) {
+        toast.error(error.message)
+        setLoading(false)
+        return
+      }
+
+      toast.success('Password updated successfully!')
+      router.push('/portal')
+    } catch (err: any) {
+      toast.error(err?.message || 'Failed to update password. Please try again.')
+      setLoading(false)
+    }
   }
 
   return (
@@ -54,56 +63,48 @@ export default function LoginPage() {
               <span className="text-white">IDEA</span><span className="text-primary">PHASE</span>
             </span>
           </Link>
-          <p className="text-muted-foreground text-sm">Sign in to your client portal workspace</p>
+          <p className="text-muted-foreground text-sm">Set your new password</p>
         </div>
 
         {/* Card */}
         <div className="bg-card border border-border rounded-2xl p-8 shadow-xl shadow-black/40">
-          <form onSubmit={handleLogin} className="space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium text-foreground">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="bg-input border-border text-foreground placeholder:text-muted-foreground h-11"
-              />
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="password" className="text-sm font-medium text-foreground">Password</Label>
-                <Link href="/forgot-password" className="text-xs text-primary hover:underline font-medium">
-                  Forgot password?
-                </Link>
-              </div>
+          <form onSubmit={handlePasswordUpdate} className="space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="password" className="text-sm font-medium text-foreground">New Password</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="••••••••"
+                placeholder="At least 6 characters"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                minLength={6}
                 className="bg-input border-border text-foreground placeholder:text-muted-foreground h-11"
               />
             </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="confirmPassword" className="text-sm font-medium text-foreground">Confirm New Password</Label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                placeholder="Re-enter new password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                minLength={6}
+                className="bg-input border-border text-foreground placeholder:text-muted-foreground h-11"
+              />
+            </div>
+
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-11 bg-primary hover:bg-primary/90 text-white font-semibold transition-all duration-200 cursor-pointer"
+              className="w-full h-11 mt-2 bg-primary hover:bg-primary/90 text-white font-semibold transition-all duration-200 cursor-pointer"
             >
-              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign In'}
+              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Update Password'}
             </Button>
           </form>
-
-          <div className="mt-6 pt-5 border-t border-border text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{' '}
-            <Link href="/signup" className="text-primary font-semibold hover:underline">
-              Create an account
-            </Link>
-          </div>
         </div>
 
         <p className="text-center text-xs text-muted-foreground mt-6">

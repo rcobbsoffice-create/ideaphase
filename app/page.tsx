@@ -413,12 +413,12 @@ export default function HomePage() {
             onMouseEnter={() => setCursorExpanded(true)} onMouseLeave={() => setCursorExpanded(false)}>
             <Image
               src="/favicon-icon.png"
-              alt="IdeaPhase"
+              alt="IDEAPHASE"
               width={32}
               height={32}
               className="w-8 h-8 rounded-lg object-contain transition-transform duration-200 hover:scale-110"
             />
-            <span className="font-bold text-lg tracking-tight">Idea<span style={{ color: "#00C9A7" }}>Phase</span></span>
+            <span className="font-extrabold text-lg tracking-widest uppercase">IDEA<span style={{ color: "#00C9A7" }}>PHASE</span></span>
           </button>
 
           {/* Desktop Nav */}
@@ -858,12 +858,12 @@ export default function HomePage() {
           <button onClick={() => scrollTo("hero")} className="flex items-center gap-2.5" id="footer-logo">
             <Image
               src="/favicon-icon.png"
-              alt="IdeaPhase"
+              alt="IDEAPHASE"
               width={28}
               height={28}
               className="w-7 h-7 rounded-md object-contain"
             />
-            <span className="font-bold text-sm tracking-tight">Idea<span style={{ color: "#00C9A7" }}>Phase</span></span>
+            <span className="font-extrabold text-sm tracking-widest uppercase">IDEA<span style={{ color: "#00C9A7" }}>PHASE</span></span>
           </button>
 
           <p className="text-xs text-[#3B3B55] text-center">

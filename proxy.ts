@@ -28,6 +28,9 @@ export async function proxy(request: NextRequest) {
   if (
     pathname === '/' ||
     pathname === '/login' ||
+    pathname === '/signup' ||
+    pathname === '/forgot-password' ||
+    pathname === '/reset-password' ||
     pathname.startsWith('/auth/callback') ||
     pathname.startsWith('/api/stripe/webhook')
   ) {
